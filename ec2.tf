@@ -3,7 +3,7 @@ resource "aws_instance" "jenkins" {
   ami             = data.aws_ami.al2.id
   instance_type   = "t2.small"
   security_groups = [aws_security_group.web_traffic.name]
-  key_name        = "<your keypair name here>"
+  key_name        = "sre-primer"
 
 
   provisioner "remote-exec"  {
@@ -25,7 +25,7 @@ resource "aws_instance" "jenkins" {
     type         = "ssh"
     host         = self.public_ip
     user         = "ec2-user"
-    private_key  = file("mykey.pem" ) # <your keypair name here>
+    private_key  = file("~/.ssh/keys/sre-primer.pem") # <your keypair name here>
    }
   tags  = {
     "Name"      = "Jenkins"

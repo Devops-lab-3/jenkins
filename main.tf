@@ -1,12 +1,15 @@
 provider "aws" {
-  region  = "us-east-1"
+  region  = "us-west-1"
+  profile = "terraform"
 }
 
 terraform {
   backend "s3" {
-    bucket         = "<your bucket here>"
-    key            = "<your statefile here>"
-    region         = "us-east-1"
+    bucket         = "cognizant-lab-3"
+    key            = "jenkins/terraform.tfstate"
+    region         = "us-west-1"
+    profile = "terraform"
+    encrypt = true
   }
 }
 
